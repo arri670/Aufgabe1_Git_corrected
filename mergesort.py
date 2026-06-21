@@ -46,21 +46,39 @@ def merge_sorted_halves(values, left_half, right_half):
         target_index += 1
 
 
-def plot_values(values):
+def plot_values(values, title, label):
     """
-    Plot the values of a list.
+    Plot the values of a list with title, axis labels, grid and legend.
     """
     x_values = range(len(values))
-    plt.plot(x_values, values)
+
+    plt.figure(figsize=(8, 5))
+    plt.plot(x_values, values, marker="o", label=label)
+    plt.title(title)
+    plt.xlabel("Index")
+    plt.ylabel("Value")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
     plt.show()
 
 
 def main():
     values = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 
-    plot_values(values)
+    plot_values(
+        values,
+        title="Values Before Merge Sort",
+        label="Before sorting",
+    )
+
     merge_sort(values)
-    plot_values(values)
+
+    plot_values(
+        values,
+        title="Values After Merge Sort",
+        label="After sorting",
+    )
 
 
 if __name__ == "__main__":
